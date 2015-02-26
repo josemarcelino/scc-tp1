@@ -5,7 +5,7 @@ public class Map {
 
     private double grass[][];
 
-    
+
 
     public double[][] getGrass() {
         return grass;
