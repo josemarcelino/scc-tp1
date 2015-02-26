@@ -14,4 +14,7 @@ public class Map {
     public void setGrass(double[][] grass) {
         this.grass = grass;
     }
+
+
+
 }
