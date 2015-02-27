@@ -6,8 +6,15 @@ import java.util.Random;
 public class Animals {
 
     protected double energy;
-    protected Coords Coordinates;
+    protected Coords coordinates;
 
+    public Animals() {
+    }
+
+    public Animals(double energy, Coords coordinates) {
+        this.energy = energy;
+        coordinates = coordinates;
+    }
 
     public double getEnergy() {
         return energy;
@@ -18,11 +25,11 @@ public class Animals {
     }
 
     public Coords getCoordinates() {
-        return Coordinates;
+        return coordinates;
     }
 
     public void setCoordinates(Coords coordinates) {
-        Coordinates = coordinates;
+        coordinates = coordinates;
     }
 
     private void initialEnergy(int max){
@@ -35,7 +42,7 @@ public class Animals {
 
     private void generateInitialCoords(){
 
-        this.Coordinates.setRandomCoords();
+        this.coordinates.setRandomCoords();
     }
 
     public void inicialCreation(int maxEnergy){   //-> maxEnergy = 30 lobos, 7 ovelhas
@@ -45,6 +52,6 @@ public class Animals {
 
 
     public void move(double matrix[][]){
-        this.Coordinates.CalculateNextCoords(matrix);
+        this.coordinates.CalculateNextCoords(matrix);
     }
 }

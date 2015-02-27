@@ -23,7 +23,7 @@ public class Map {
         sheepList = new ArrayList<Sheep>();
     }
 
-    private void initMap(int numSheep, int numWolf){
+    private void initMap(int numSheep, int numWolf,int energySheep, int energyWolf){
 
         Random rand = new Random();
         int randomNum;
@@ -32,7 +32,7 @@ public class Map {
             for(int j = 0; j < grass[0].length; j++){
 
                 randomNum = rand.nextInt((100 - 1) + 1) + 1;
-                if(randomNum <= 5 )
+                if(randomNum <= 50 )
                     this.grass[i][j] = 1;
                 else
                     this.grass[i][j] = 0;
@@ -43,14 +43,14 @@ public class Map {
         for(int i = 0; i < numSheep ; i++){
 
             Sheep tempSheep = new Sheep();
-            tempSheep.inicialCreation(7);
+            tempSheep.inicialCreation(energySheep);
             this.sheepList.add(tempSheep);
         }
 
         for(int i = 0; i < numWolf; i++){
 
             Wolf tempWolf = new Wolf();
-            tempWolf.inicialCreation(30);
+            tempWolf.inicialCreation(energyWolf);
             this.wolfList.add(tempWolf);
         }
 
