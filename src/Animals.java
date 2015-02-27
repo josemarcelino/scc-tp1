@@ -42,4 +42,9 @@ public class Animals {
         initialEnergy(maxEnergy);
         generateInitialCoords();
     }
+
+
+    public void move(double matrix[][]){
+        this.Coordinates.CalculateNextCoords(matrix);
+    }
 }

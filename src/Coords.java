@@ -41,7 +41,7 @@ public class Coords {
 
         this.coordY = randomNum;
     }
-    void CalculateNextCoords(int matriz[][]){
+    void CalculateNextCoords(double matrix[][]){
 
         Random rand = new Random();
         int randomNum = rand.nextInt((8 - 1) + 1) + 1;
@@ -88,25 +88,27 @@ public class Coords {
 
 
 
-       if(this.coordX > matriz.length){
+       if(this.coordX > matrix.length){
            this.coordX = 0;
        }
 
        else if(coordX < 0){
 
-           this.coordX = matriz.length;
+           this.coordX = matrix.length;
 
        }
 
-       if(this.coordY > matriz[0].length){
+       if(this.coordY > matrix[0].length){
            this.coordY = 0;
        }
 
        else if(this.coordY < 0){
-           this.coordY = matriz[0].length;
+           this.coordY = matrix[0].length;
        }
 
         //falta verificaçao das diagonais
+
+
 
 
 
