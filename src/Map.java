@@ -70,4 +70,26 @@ public class Map {
             }
         }
     }
+
+    private void feedGrass(){
+
+        for(int i = 0; i < sheepList.size();i++){
+
+            if(this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] > 0){
+                ArrayList<Sheep> tempSheepList = new ArrayList<Sheep>();
+                for(int j = 0; j < sheepList.size(); j++) {
+                    if (sheepList.get(j).getCoordinates().getCoordX() == sheepList.get(i).getCoordinates().getCoordX() && sheepList.get(j).getCoordinates().getCoordY() == sheepList.get(i).getCoordinates().getCoordY()) {
+                        tempSheepList.add(sheepList.get(j));
+                    }
+                }
+                double amount = this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] / tempSheepList.size();
+                for(int k = 0; k < tempSheepList.size(); k++){
+                    tempSheepList.get(k).feed(amount);
+                }
+            }
+
+        }
+
+    }
+
 }

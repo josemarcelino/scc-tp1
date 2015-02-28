@@ -21,5 +21,10 @@ public class Sheep extends Animals {
             Sheep newSheep = new Sheep(this.energy, this.coordinates);
             map.sheepList.add(newSheep);
         }
+        energy--;  //verificar posiçao e se da a luz antes e morre ou se morre e nao da a luz
+    }
+
+    public void feed(double amount){
+        this.energy+=amount;
     }
 }
