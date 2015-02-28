@@ -69,6 +69,14 @@ public class Map {
                 wolfList.get(k).move(this.grass);
             }
         }
+
+        //feed functions go here
+        //grow grass function go here
+    }
+
+    private void growGrass(){
+
+
     }
 
     private void feedGrass(){
