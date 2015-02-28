@@ -20,6 +20,8 @@ public class Wolf extends Animals {
         if(randomNum <= 5){
             Wolf newWolf = new Wolf(this.energy , this.coordinates);
             map.wolfList.add(newWolf);
+
+
         }
 
     }

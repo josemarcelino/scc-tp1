@@ -54,6 +54,20 @@ public class Map {
             this.wolfList.add(tempWolf);
         }
 
+
+
+
     }
 
+    public void Simulate(int times){
+        for(int i = 0; i < times; i++) {
+            for (int j = 0; j < sheepList.size(); j++){
+                sheepList.get(j).move(this.grass);
+             }
+
+            for (int k = 0; k < wolfList.size();k++){
+                wolfList.get(k).move(this.grass);
+            }
+        }
+    }
 }
