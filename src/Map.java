@@ -83,12 +83,20 @@ public class Map {
                     }
                 }
                 double amount = this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] / tempSheepList.size();
+                this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] = 0;
                 for(int k = 0; k < tempSheepList.size(); k++){
                     tempSheepList.get(k).feed(amount);
                 }
             }
 
         }
+
+    }
+
+
+    private void feedSheep(){
+
+
 
     }
 
