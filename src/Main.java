@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args){
         Map mainMap = new Map();
+        mainMap.Simulate(10);
 
         System.out.println("Finish . . .");
     }

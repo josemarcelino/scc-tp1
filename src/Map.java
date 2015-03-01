@@ -86,14 +86,34 @@ public class Map {
 
     public void Simulate(int times){
         for(int i = 0; i < times; i++) {
-            for (int j = 0; j < sheepList.size(); j++){
+            for (int j = 0; j < sheepList.size(); j++) {
+                //move
                 sheepList.get(j).setCoordinates(nextCoords(sheepList.get(j).getCoordinates()));
-             }
+
+                //check if she breeds
+                Random rand = new Random();
+                int randomNum = rand.nextInt((100 - 1) + 1) + 1;
+                if (randomNum <= 4) {
+                    Sheep newSheep = new Sheep(sheepList.get(j).getEnergy() / 2, sheepList.get(j).getCoordinates());
+                    this.sheepList.add(newSheep);
+                }
+            }
 
             for (int k = 0; k < wolfList.size();k++){
                 wolfList.get(k).setCoordinates(nextCoords(wolfList.get(k).getCoordinates()));
+
+                Random rand = new Random();
+                int randomNum = rand.nextInt((100 - 1) + 1) + 1;
+                if (randomNum <= 5) {
+                    Wolf newWolf = new Wolf(wolfList.get(k).getEnergy() / 2, wolfList.get(k).getCoordinates());
+                    this.wolfList.add(newWolf);
+                }
             }
         }
+
+
+        System.out.println("Final Sheep -> " + this.sheepList.size());
+        System.out.println("Final Wolf -> " + this.wolfList.size());
         //feed functions go here
         //grow grass function go here
     }
