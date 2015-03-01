@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,10 +16,11 @@ public class Map {
         this.grass = new double[51][51];
         this.wolfList = new ArrayList <Wolf>();
         this.sheepList = new ArrayList<Sheep>();
-        initMap(100, 30, 7, 20);
+        initMap(100, 30, 7, 30);
 
        // System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
        // Simulate(1);
+
        // System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
 
         System.out.println("Sheep -> " + this.sheepList.size());
@@ -84,8 +87,15 @@ public class Map {
 
     }
 
-    public void Simulate(int times){
+    public void Simulate(int times) throws FileNotFoundException {
+
+        PrintWriter writerSheep = new PrintWriter("dadosSheep.txt");
+        PrintWriter writerWolf = new PrintWriter("dadosWolf.txt");
+        PrintWriter writerGrass = new PrintWriter("dadosGrass.txt");
         for(int i = 0; i < times; i++) {
+
+
+
             //SHEEPS////
             for (int j = 0; j < sheepList.size(); j++) {
                 //move
@@ -129,7 +139,22 @@ public class Map {
             eatSheep();
             feedGrass();
 
+            int grassNumber = 0;
+            for(int r = 0; r < 51; r++){
+                for(int t=0; t < 51;t++){
+                    if(this.grass[r][t] == 1)
+                        grassNumber++;
+                }
+            }
+            writerGrass.println(grassNumber);
+            writerSheep.println(sheepList.size());
+            writerWolf.println(wolfList.size());
+
         }
+
+        writerGrass.close();
+        writerSheep.close();
+        writerWolf.close();
 
 //prints para teste //
         System.out.println("Final Sheep -> " + this.sheepList.size());
@@ -260,7 +285,7 @@ public class Map {
                 double amount = this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] / tempSheepList.size();
                 this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()]  = 0.0;
                 for(int k = 0; k < tempSheepList.size(); k++){
-                    tempSheepList.get(k).addEnergy(amount);
+                    tempSheepList.get(k).setEnergy(amount);
                 }
             }
 
@@ -312,7 +337,7 @@ public class Map {
 
                 //add energy from eaten sheeps. (Divides equally for each wolf)
                 for (int j = 0; j < auxIndexWolf.size(); j++) {
-                    wolfList.get(auxIndexWolf.get(j)).addEnergy(totalSheepEnergy / auxIndexWolf.size());
+                    wolfList.get(auxIndexWolf.get(j)).setEnergy(totalSheepEnergy / auxIndexWolf.size());
                 }
 
 
