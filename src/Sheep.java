@@ -1,8 +1,4 @@
-import java.util.Random;
 
-/**
- * Created by pedro on 26-02-2015.
- */
 public class Sheep extends Animals {
 
     public Sheep() {
@@ -14,19 +10,4 @@ public class Sheep extends Animals {
         super(energy, coordinates);
     }
 
-
-   /* public void move(Map map, double matrix[][]) {
-        super.move(matrix);
-        Random rand = new Random();
-        int randomNum = rand.nextInt((100 - 1) + 1) + 1;
-        if (randomNum <= 4) {
-            Sheep newSheep = new Sheep(this.energy, this.coordinates);
-            map.sheepList.add(newSheep);
-        }
-        energy--;  //verificar posiçao e se da a luz antes e morre ou se morre e nao da a luz
-    }
-
-    public void feed(double amount){
-        this.energy+=amount;
-    }*/
 }

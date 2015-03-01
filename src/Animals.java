@@ -1,8 +1,4 @@
-import java.util.Random;
 
-/**
- * Created by pedro on 26-02-2015.
- */
 public class Animals {
 
     protected double energy;
@@ -33,7 +29,5 @@ public class Animals {
     public void setCoordinates(Coords coordinates) {
         this.coordinates = coordinates;
     }
-
-    public void addEnergy(double energyToAdd){ this.energy+=energyToAdd; }
 
 }

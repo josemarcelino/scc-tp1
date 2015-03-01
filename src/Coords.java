@@ -1,8 +1,4 @@
-import java.util.Random;
 
-/**
- * Created by pedro on 26-02-2015.
- */
 public class Coords {
 
     private int coordX;
@@ -29,82 +25,4 @@ public class Coords {
         this.coordY = coordY;
     }
 
-/*
-
-
-    void CalculateNextCoords(double matrix[][]){
-
-        Random rand = new Random();
-        int randomNum = rand.nextInt((8 - 1) + 1) + 1;
-
-       if(randomNum == 1){
-           this.coordX--;
-       }
-       else if(randomNum == 2){
-            this.coordY--;
-            this.coordX--;
-        }
-
-       else if(randomNum == 3){
-            this.coordY--;
-       }
-
-       else if(randomNum == 4){
-           this.coordX--;
-           this.coordY++;
-       }
-
-       else if(randomNum == 5){
-
-           this.coordX++;
-       }
-
-       else if(randomNum == 6){
-           this.coordY++;
-           this.coordX++;
-       }
-
-       else if(randomNum == 7){
-           this.coordY++;
-       }
-
-       else {
-           this.coordX++;
-           this.coordY--;
-       }
-
-
-        //implementar verificacao dos limites
-
-
-
-
-       if(this.coordX > matrix.length){
-           this.coordX = 0;
-       }
-
-       else if(coordX < 0){
-
-           this.coordX = matrix.length;
-
-       }
-
-       if(this.coordY > matrix[0].length){
-           this.coordY = 0;
-       }
-
-       else if(this.coordY < 0){
-           this.coordY = matrix[0].length;
-       }
-
-        //falta verificaçao das diagonais
-
-
-
-
-
-
-
-    }
-    */
 }

@@ -3,9 +3,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by pedro on 26-02-2015.
- */
+
 public class Map {
 
     private double grass[][];
@@ -18,15 +16,6 @@ public class Map {
         this.sheepList = new ArrayList<Sheep>();
         initMap(100, 30, 7, 30);
 
-       // System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
-       // Simulate(1);
-
-       // System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
-
-        System.out.println("Sheep -> " + this.sheepList.size());
-        System.out.println("Wolf -> " + this.wolfList.size());
-
-
         for(int i = 0; i < 51; i++){
             for(int j=0; j < 51;j++){
                 System.out.print("--" + this.grass[i][j]);
@@ -34,18 +23,6 @@ public class Map {
             System.out.println("");
         }
 
-    }
-
-
-    public double[][] getGrass() {
-        return grass;
-    }
-
-    public void setGrass(double[][] grass) {
-
-        this.grass = grass;
-        wolfList = new ArrayList<Wolf>();
-        sheepList = new ArrayList<Sheep>();
     }
 
     private void initMap(int numSheep, int numWolf,int energySheep, int energyWolf){
@@ -156,16 +133,6 @@ public class Map {
         writerSheep.close();
         writerWolf.close();
 
-//prints para teste //
-        System.out.println("Final Sheep -> " + this.sheepList.size());
-        System.out.println("Final Wolf -> " + this.wolfList.size());
-        //feed functions go here
-        for(int i = 0; i < 51; i++){
-            for(int j=0; j < 51;j++){
-                System.out.print("--" + this.grass[i][j]);
-            }
-            System.out.println("");
-        }
     }
 
     private Coords nextCoords(Coords coordinates) {
@@ -226,7 +193,7 @@ public class Map {
         else if(aux.getCoordY() < 0){
             aux.setCoordY(50);
         }
-        //falta verificaçao das diagonais
+
 
         return aux;
     }
