@@ -23,6 +23,14 @@ public class Map {
         System.out.println("Sheep -> " + this.sheepList.size());
         System.out.println("Wolf -> " + this.wolfList.size());
 
+
+        for(int i = 0; i < 51; i++){
+            for(int j=0; j < 51;j++){
+                System.out.print( "--" + this.grass[i][j]);
+            }
+            System.out.println("");
+        }
+
     }
 
 
@@ -47,7 +55,7 @@ public class Map {
 
                 randomNum = rand.nextInt((100 - 1) + 1) + 1;
                 if(randomNum <= 50 )
-                    this.grass[i][j] = 1;
+                    this.grass[i][j] = initGrass();
                 else
                     this.grass[i][j] = 0;
 
@@ -172,12 +180,28 @@ public class Map {
         return randomNum;
     }
 
-    /*private void growGrass(){
 
-
+    private double initGrass() {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((30 - 1) + 1) + 1;
+        double aux = 1.0/30;
+        return(aux*randomNum);
     }
 
-    private void feedGrass(){
+    private void growGrass(){
+
+        for(int i = 0; i < 51;i++){
+            for(int j = 0; j<51;j++){
+                this.grass[i][j] += (1/30);
+
+                if(this.grass[i][j] > 1){
+                    this.grass[i][j] = 1;
+                }
+            }
+        }
+    }
+
+ /*   private void feedGrass(){
 
         for(int i = 0; i < sheepList.size();i++){
 
@@ -199,11 +223,11 @@ public class Map {
 
     }
 
-
+/*
     private void feedSheep(){
 
 
 
-    }*/
+    } */
 
 }
