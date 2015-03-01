@@ -113,6 +113,8 @@ public class Map {
                     this.wolfList.add(newWolf);
                 }
             }
+
+            eatSheep();
          //routine
         growGrass();
         }
@@ -278,7 +280,7 @@ public class Map {
             done = false;
 
             //verify if this wolf is already feeded
-            for (int p = 0; i < alreadyDone.size(); p++) {
+            for (int p = 0; p < alreadyDone.size(); p++) {
                 if (alreadyDone.get(p) == i) {
                     done = true;
                     p = alreadyDone.size();
