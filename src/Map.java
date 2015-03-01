@@ -10,6 +10,20 @@ public class Map {
     ArrayList<Wolf> wolfList;
     ArrayList<Sheep> sheepList;
 
+    public Map() {
+        this.grass = new double[51][51];
+        this.wolfList = new ArrayList <Wolf>();
+        this.sheepList = new ArrayList<Sheep>();
+        initMap(100, 30, 7, 20);
+
+        System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
+        Simulate(1);
+        System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
+
+        System.out.println("Sheep -> " + this.sheepList.size());
+        System.out.println("Wolf -> " + this.wolfList.size());
+
+    }
 
 
     public double[][] getGrass() {
@@ -43,38 +57,122 @@ public class Map {
         for(int i = 0; i < numSheep ; i++){
 
             Sheep tempSheep = new Sheep();
-            tempSheep.inicialCreation(energySheep);
+
+            tempSheep.setCoordinates(randomCoords());
+            tempSheep.setEnergy(randomEnergy(energySheep));
+
             this.sheepList.add(tempSheep);
         }
 
         for(int i = 0; i < numWolf; i++){
 
             Wolf tempWolf = new Wolf();
-            tempWolf.inicialCreation(energyWolf);
+
+            tempWolf.setCoordinates(randomCoords());
+            tempWolf.setEnergy(randomEnergy(energyWolf));
+
             this.wolfList.add(tempWolf);
         }
-
-
-
 
     }
 
     public void Simulate(int times){
         for(int i = 0; i < times; i++) {
             for (int j = 0; j < sheepList.size(); j++){
-                sheepList.get(j).move(this.grass);
+                sheepList.get(j).setCoordinates(nextCoords(sheepList.get(j).getCoordinates()));
              }
 
             for (int k = 0; k < wolfList.size();k++){
-                wolfList.get(k).move(this.grass);
+                wolfList.get(k).setCoordinates(nextCoords(wolfList.get(k).getCoordinates()));
             }
         }
-
         //feed functions go here
         //grow grass function go here
     }
 
-    private void growGrass(){
+    private Coords nextCoords(Coords coordinates) {
+        Coords aux = new Coords(0,0);
+        Random rand = new Random();
+        int randomNum = rand.nextInt((8 - 1) + 1) + 1;
+
+        if(randomNum == 1){
+            aux.setCoordX(coordinates.getCoordX()-1);
+        }
+        else if(randomNum == 2){
+            aux.setCoordY(coordinates.getCoordY()-1);
+            aux.setCoordX(coordinates.getCoordX()-1);
+        }
+
+        else if(randomNum == 3){
+            aux.setCoordY(coordinates.getCoordY()-1);
+        }
+
+        else if(randomNum == 4){
+            aux.setCoordX(coordinates.getCoordX()-1);
+            aux.setCoordY(coordinates.getCoordY() + 1);
+        }
+
+        else if(randomNum == 5){
+
+            aux.setCoordX(coordinates.getCoordX()+1);
+        }
+
+        else if(randomNum == 6){
+            aux.setCoordY(coordinates.getCoordY() + 1);
+            aux.setCoordX(coordinates.getCoordX()+1);
+        }
+
+        else if(randomNum == 7){
+            aux.setCoordY(coordinates.getCoordY()+1);
+        }
+
+        else {
+            aux.setCoordX(coordinates.getCoordX() + 1);
+            aux.setCoordY(coordinates.getCoordY()-1);
+        }
+
+        //implementar verificacao dos limites
+
+        if(aux.getCoordX() > 51){
+            aux.setCoordX(0);
+        }
+
+        else if(aux.getCoordX() < 0){
+            aux.setCoordX(51);
+        }
+
+        if(aux.getCoordY() > 51){
+            aux.setCoordY(0);
+        }
+
+        else if(aux.getCoordY() < 0){
+            aux.setCoordY(51);
+        }
+        //falta verificaçao das diagonais
+
+        return aux;
+    }
+
+    public Coords randomCoords() {
+        Coords aux = new Coords(0,0);
+        Random rand = new Random();
+
+        int randomNum = rand.nextInt(51);
+        aux.setCoordX(randomNum);
+
+        randomNum = rand.nextInt(51);
+        aux.setCoordY(randomNum);
+
+        return aux;
+    }
+
+    public double randomEnergy(int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max) + 1);
+        return randomNum;
+    }
+
+    /*private void growGrass(){
 
 
     }
@@ -106,6 +204,6 @@ public class Map {
 
 
 
-    }
+    }*/
 
 }

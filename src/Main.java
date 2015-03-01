@@ -4,8 +4,11 @@
 
 public class Main {
 
-    public static void main(String[] args){
 
-        System.out.println("ATAO CRL!");
+
+    public static void main(String[] args){
+        Map mainMap = new Map();
+
+        System.out.println("Finish . . .");
     }
 }

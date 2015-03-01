@@ -6,6 +6,8 @@ import java.util.Random;
 public class Sheep extends Animals {
 
     public Sheep() {
+        this.energy = 0;
+        this.setCoordinates(null);
     }
 
     public Sheep(double energy, Coords coordinates) {
@@ -13,7 +15,7 @@ public class Sheep extends Animals {
     }
 
 
-    public void move(Map map, double matrix[][]) {
+   /* public void move(Map map, double matrix[][]) {
         super.move(matrix);
         Random rand = new Random();
         int randomNum = rand.nextInt((100 - 1) + 1) + 1;
@@ -26,5 +28,5 @@ public class Sheep extends Animals {
 
     public void feed(double amount){
         this.energy+=amount;
-    }
+    }*/
 }

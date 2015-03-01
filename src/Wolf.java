@@ -13,7 +13,7 @@ public class Wolf extends Animals {
     }
 
 
-    public void move(Map map, double matrix[][]){
+    /*public void move(Map map, double matrix[][]){
         super.move(matrix);
         Random rand = new Random();
         int randomNum = rand.nextInt((100 - 1) + 1) + 1;
@@ -24,5 +24,5 @@ public class Wolf extends Animals {
 
         }
 
-    }
+    }*/
 }

@@ -9,11 +9,13 @@ public class Animals {
     protected Coords coordinates;
 
     public Animals() {
+        this.energy = 0;
+        this.coordinates = new Coords(0,0);
     }
 
     public Animals(double energy, Coords coordinates) {
         this.energy = energy;
-        coordinates = coordinates;
+        this.coordinates = coordinates;
     }
 
     public double getEnergy() {
@@ -29,29 +31,7 @@ public class Animals {
     }
 
     public void setCoordinates(Coords coordinates) {
-        coordinates = coordinates;
+        this.coordinates = coordinates;
     }
 
-    private void initialEnergy(int max){
-
-        Random rand = new Random();
-        int randomNum = rand.nextInt((max) + 1);
-        this.energy = randomNum;
-
-    }
-
-    private void generateInitialCoords(){
-
-        this.coordinates.setRandomCoords();
-    }
-
-    public void inicialCreation(int maxEnergy){   //-> maxEnergy = 30 lobos, 7 ovelhas
-        initialEnergy(maxEnergy);
-        generateInitialCoords();
-    }
-
-
-    public void move(double matrix[][]){
-        this.coordinates.CalculateNextCoords(matrix);
-    }
 }

@@ -29,18 +29,9 @@ public class Coords {
         this.coordY = coordY;
     }
 
+/*
 
 
-    public void setRandomCoords(){
-        Random rand = new Random();
-        int randomNum = rand.nextInt(51);
-
-        this.coordX = randomNum;
-
-        randomNum = rand.nextInt(51);
-
-        this.coordY = randomNum;
-    }
     void CalculateNextCoords(double matrix[][]){
 
         Random rand = new Random();
@@ -115,4 +106,5 @@ public class Coords {
 
 
     }
+    */
 }
