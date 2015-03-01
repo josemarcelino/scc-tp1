@@ -16,9 +16,9 @@ public class Map {
         this.sheepList = new ArrayList<Sheep>();
         initMap(100, 30, 7, 20);
 
-        System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
-        Simulate(1);
-        System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
+       // System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
+       // Simulate(1);
+       // System.out.println(sheepList.get(0).getCoordinates().getCoordX() + " : " + sheepList.get(0).getCoordinates().getCoordY());
 
         System.out.println("Sheep -> " + this.sheepList.size());
         System.out.println("Wolf -> " + this.wolfList.size());
@@ -92,11 +92,16 @@ public class Map {
                 sheepList.get(j).setCoordinates(nextCoords(sheepList.get(j).getCoordinates()));
 
                 //check if she breeds
-                Random rand = new Random();
-                int randomNum = rand.nextInt((100 - 1) + 1) + 1;
-                if (randomNum <= 4) {
-                    Sheep newSheep = new Sheep(sheepList.get(j).getEnergy() / 2, sheepList.get(j).getCoordinates());
-                    this.sheepList.add(newSheep);
+                sheepList.get(j).setEnergy((sheepList.get(j).getEnergy() - 1.0));
+                if(sheepList.get(j).getEnergy() <= 0)
+                    sheepList.remove(j);
+                else {
+                    Random rand = new Random();
+                    int randomNum = rand.nextInt((100 - 1) + 1) + 1;
+                    if (randomNum <= 4) {
+                        Sheep newSheep = new Sheep(sheepList.get(j).getEnergy() / 2, sheepList.get(j).getCoordinates());
+                        this.sheepList.add(newSheep);
+                    }
                 }
             }
 
@@ -106,17 +111,24 @@ public class Map {
 
                 wolfList.get(k).setCoordinates(nextCoords(wolfList.get(k).getCoordinates()));
 
-                Random rand = new Random();
-                int randomNum = rand.nextInt((100 - 1) + 1) + 1;
-                if (randomNum <= 5) {
-                    Wolf newWolf = new Wolf(wolfList.get(k).getEnergy() / 2, wolfList.get(k).getCoordinates());
-                    this.wolfList.add(newWolf);
+
+                wolfList.get(k).setEnergy((wolfList.get(k).getEnergy() - 1.0));
+                if(wolfList.get(k).getEnergy() <= 0)
+                    wolfList.remove(k);
+                else {
+                    Random rand = new Random();
+                    int randomNum = rand.nextInt((100 - 1) + 1) + 1;
+                    if (randomNum <= 5) {
+                        Wolf newWolf = new Wolf(wolfList.get(k).getEnergy() / 2, wolfList.get(k).getCoordinates());
+                        this.wolfList.add(newWolf);
+                    }
                 }
             }
 
+            growGrass();
             eatSheep();
-         //routine
-        growGrass();
+            feedGrass();
+
         }
 
 //prints para teste //
@@ -129,7 +141,6 @@ public class Map {
             }
             System.out.println("");
         }
-        //grow grass function go here
     }
 
     private Coords nextCoords(Coords coordinates) {
@@ -175,20 +186,20 @@ public class Map {
 
         //implementar verificacao dos limites
 
-        if(aux.getCoordX() > 51){
+        if(aux.getCoordX() >= 51){
             aux.setCoordX(0);
         }
 
         else if(aux.getCoordX() < 0){
-            aux.setCoordX(51);
+            aux.setCoordX(50);
         }
 
-        if(aux.getCoordY() > 51){
+        if(aux.getCoordY() >= 51){
             aux.setCoordY(0);
         }
 
         else if(aux.getCoordY() < 0){
-            aux.setCoordY(51);
+            aux.setCoordY(50);
         }
         //falta verificaçao das diagonais
 
@@ -235,11 +246,11 @@ public class Map {
         }
     }
 
- /*   private void feedGrass(){
+   private void feedGrass(){
 
         for(int i = 0; i < sheepList.size();i++){
 
-            if(this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] > 0){
+            if(this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] > 0.0){
                 ArrayList<Sheep> tempSheepList = new ArrayList<Sheep>();
                 for(int j = 0; j < sheepList.size(); j++) {
                     if (sheepList.get(j).getCoordinates().getCoordX() == sheepList.get(i).getCoordinates().getCoordX() && sheepList.get(j).getCoordinates().getCoordY() == sheepList.get(i).getCoordinates().getCoordY()) {
@@ -247,23 +258,15 @@ public class Map {
                     }
                 }
                 double amount = this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] / tempSheepList.size();
-                this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()] = 0;
+                this.grass[sheepList.get(i).getCoordinates().getCoordX()][sheepList.get(i).getCoordinates().getCoordY()]  = 0.0;
                 for(int k = 0; k < tempSheepList.size(); k++){
-                    tempSheepList.get(k).feed(amount);
+                    tempSheepList.get(k).addEnergy(amount);
                 }
             }
 
         }
 
     }
-
-/*
-    private void feedSheep(){
-
-
-
-    } */
-
 
     public void eatSheep() {
 
