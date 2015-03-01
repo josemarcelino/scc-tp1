@@ -86,6 +86,7 @@ public class Map {
 
     public void Simulate(int times){
         for(int i = 0; i < times; i++) {
+            //SHEEPS////
             for (int j = 0; j < sheepList.size(); j++) {
                 //move
                 sheepList.get(j).setCoordinates(nextCoords(sheepList.get(j).getCoordinates()));
@@ -99,7 +100,10 @@ public class Map {
                 }
             }
 
+
+            ///WOLFS////
             for (int k = 0; k < wolfList.size();k++){
+
                 wolfList.get(k).setCoordinates(nextCoords(wolfList.get(k).getCoordinates()));
 
                 Random rand = new Random();
@@ -109,12 +113,20 @@ public class Map {
                     this.wolfList.add(newWolf);
                 }
             }
+         //routine
+        growGrass();
         }
 
-
+//prints para teste //
         System.out.println("Final Sheep -> " + this.sheepList.size());
         System.out.println("Final Wolf -> " + this.wolfList.size());
         //feed functions go here
+        for(int i = 0; i < 51; i++){
+            for(int j=0; j < 51;j++){
+                System.out.print("--" + this.grass[i][j]);
+            }
+            System.out.println("");
+        }
         //grow grass function go here
     }
 
@@ -212,7 +224,7 @@ public class Map {
 
         for(int i = 0; i < 51;i++){
             for(int j = 0; j<51;j++){
-                this.grass[i][j] += (1/30);
+                this.grass[i][j] += (1.0/30);
 
                 if(this.grass[i][j] > 1){
                     this.grass[i][j] = 1;
