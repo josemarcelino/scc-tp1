@@ -7,5 +7,5 @@ public class Wolf extends Animals {
     public Wolf(double energy, Coords coordinates) {
         super(energy, coordinates);
     }
-    
+
 }

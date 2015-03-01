@@ -16,13 +16,6 @@ public class Map {
         this.sheepList = new ArrayList<Sheep>();
         initMap(100, 30, 7, 30);
 
-        for(int i = 0; i < 51; i++){
-            for(int j=0; j < 51;j++){
-                System.out.print("--" + this.grass[i][j]);
-            }
-            System.out.println("");
-        }
-
     }
 
     private void initMap(int numSheep, int numWolf,int energySheep, int energyWolf){
