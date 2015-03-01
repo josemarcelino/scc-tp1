@@ -26,7 +26,7 @@ public class Map {
 
         for(int i = 0; i < 51; i++){
             for(int j=0; j < 51;j++){
-                System.out.print( "--" + this.grass[i][j]);
+                System.out.print("--" + this.grass[i][j]);
             }
             System.out.println("");
         }
@@ -229,5 +229,58 @@ public class Map {
 
 
     } */
+
+
+    public void eatSheep() {
+
+        ArrayList<Integer>auxIndexWolf = new ArrayList<Integer>();
+      //  ArrayList<Integer>auxIndexSheep = new ArrayList<Integer>();
+        double totalSheepEnergy = 0.0;
+        ArrayList<Integer> alreadyDone = new ArrayList<Integer>();
+        boolean done;
+
+
+        for(int i = 0; i < wolfList.size();i++) {
+
+            auxIndexWolf.clear();
+            done = false;
+
+            //verify if this wolf is already feeded
+            for (int p = 0; i < alreadyDone.size(); p++) {
+                if (alreadyDone.get(p) == i) {
+                    done = true;
+                    p = alreadyDone.size();
+                }
+            }
+
+            //if it is not then:
+            if (!done){
+
+                //find wolfs in same position
+                for (int j = i; j < wolfList.size(); j++) {
+                    if (wolfList.get(j).getCoordinates().getCoordX() == wolfList.get(i).getCoordinates().getCoordX() && wolfList.get(j).getCoordinates().getCoordY() == wolfList.get(i).getCoordinates().getCoordY()) {
+                        auxIndexWolf.add(j);
+                        alreadyDone.add(j);
+                    }
+                }
+
+                //find sheep in same position as wolf(i), get the energy and destroy from world
+                for (int k = 0; k < sheepList.size(); k++) {
+                    if (wolfList.get(i).getCoordinates().getCoordX() == sheepList.get(k).getCoordinates().getCoordX() && wolfList.get(i).getCoordinates().getCoordY() == sheepList.get(k).getCoordinates().getCoordY()) {
+                        //   auxIndexSheep.add(k);
+                        totalSheepEnergy += sheepList.get(k).getEnergy();
+                        sheepList.remove(k);
+                    }
+                }
+
+                //add energy from eaten sheeps. (Divides equally for each wolf)
+                for (int j = 0; j < auxIndexWolf.size(); j++) {
+                    wolfList.get(auxIndexWolf.get(j)).addEnergy(totalSheepEnergy / auxIndexWolf.size());
+                }
+
+
+            }
+        }
+    }
 
 }

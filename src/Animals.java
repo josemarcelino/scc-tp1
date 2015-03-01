@@ -34,4 +34,6 @@ public class Animals {
         this.coordinates = coordinates;
     }
 
+    public void addEnergy(double energyToAdd){ this.energy+=energyToAdd; }
+
 }
